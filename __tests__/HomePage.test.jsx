@@ -19,4 +19,22 @@ describe("Home Page - Rendering", () => {
     const input = screen.getByLabelText(/Enter Random Text/i);
     expect(input).toBeInTheDocument();
   });
+
+  it("should have an input with label Enter Specific Text", () => {
+    render(<Home />);
+    const input = screen.getByLabelText(/Enter Specific Text/i);
+    expect(input).toBeInTheDocument();
+  });
+
+  it("should find input field by display value", () => {
+    render(<Home />);
+    const audi = screen.getByDisplayValue(/AUDI/);
+    expect(audi).toBeInTheDocument();
+  });
+
+  it("should not find element with text: This is the text!", () => {
+    render(<Home />);
+    const text = screen.queryByText(/This is the text!/i);
+    expect(text).not.toBeInTheDocument();
+  });
 });

@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useState } from "react";
 
 export default function Home() {
+  const [showText, setShowText] = useState(false);
   return (
     <main>
       <h1>Home Page</h1>
@@ -9,7 +13,17 @@ export default function Home() {
       <div>
         <label htmlFor="randomText">Enter Random Text: </label>
         <input id="randomText" />
+        <label htmlFor="specificText">Enter Specific Text: </label>
+        <input id="specificText" />
+        <input
+          value="AUDI Q5"
+          onChange={() => {
+            console.log("ironman");
+          }}
+        />
       </div>
+      <button onClick={() => setShowText(!showText)}>Show Text</button>
+      {showText && <span>This is the text!</span>}
     </main>
   );
 }
