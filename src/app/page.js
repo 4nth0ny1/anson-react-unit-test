@@ -26,7 +26,7 @@ export default function Home() {
         onClick={() =>
           setTimeout(() => {
             setShowText(!showText);
-          }, 100)
+          }, 1100)
         }
       >
         Show Text

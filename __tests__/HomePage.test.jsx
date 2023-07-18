@@ -59,8 +59,16 @@ describe("Home Page", () => {
 
       // find by is better here, because if the button cannot be found then it will throw an error and the test will fail. Find by is used because we know that state needs to be updated, modals appears, button to appear or any element to appear, etc.
       // waitFor is also an option here and will done later. Where you wait for something to be true.
-      const afterClickText = await screen.findByText(/This is the text!/i);
-      expect(afterClickText).toBeInTheDocument();
+      //   const afterClickText = await screen.findByText(/This is the text!/i);
+      //   expect(afterClickText).toBeInTheDocument();
+
+      // also you can add a wait time to make sure the element exists before running the expect
+      const afterClickTextWithTimeout = await screen.findByText(
+        "This is the text!",
+        {},
+        { timeout: 5000 }
+      );
+      expect(afterClickTextWithTimeout).toBeInTheDocument();
     });
   });
 });
