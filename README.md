@@ -56,7 +56,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 ```
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
 ```
 
 ## eslint setup
