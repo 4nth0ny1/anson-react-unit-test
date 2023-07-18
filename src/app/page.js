@@ -22,7 +22,15 @@ export default function Home() {
           }}
         />
       </div>
-      <button onClick={() => setShowText(!showText)}>Show Text</button>
+      <button
+        onClick={() =>
+          setTimeout(() => {
+            setShowText(!showText);
+          }, 100)
+        }
+      >
+        Show Text
+      </button>
       {showText && <span>This is the text!</span>}
     </main>
   );
