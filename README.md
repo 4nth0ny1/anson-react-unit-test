@@ -33,8 +33,7 @@ const createJestConfig = nextJest({
 /** @type {import('jest').Config} */
 const config = {
   // Add more setup options before each test is run
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],  // this must be uncommented
   testEnvironment: 'jest-environment-jsdom',
 }
 
