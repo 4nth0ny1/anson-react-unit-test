@@ -15,7 +15,7 @@ npx create-next-app@latest
 
 ## install dependencies
 
-npm i -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
+npm i -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event
 
 ## go to nextjs docs and copy/paste into jest.config.mjs
 
