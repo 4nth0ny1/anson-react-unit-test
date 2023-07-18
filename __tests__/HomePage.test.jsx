@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Home from "../src/app/page";
 import userEvent from "@testing-library/user-event";
 
@@ -63,12 +63,20 @@ describe("Home Page", () => {
       //   expect(afterClickText).toBeInTheDocument();
 
       // also you can add a wait time to make sure the element exists before running the expect
-      const afterClickTextWithTimeout = await screen.findByText(
-        "This is the text!",
-        {},
-        { timeout: 5000 }
+      //   const afterClickTextWithTimeout = await screen.findByText(
+      //     "This is the text!",
+      //     {},
+      //     { timeout: 5000 }
+      //   );
+      //   expect(afterClickTextWithTimeout).toBeInTheDocument();
+
+      // waitFor
+      await waitFor(
+        () => {
+          expect(screen.getByText(/This is the text/i)).toBeInTheDocument();
+        },
+        { timeout: 1200 }
       );
-      expect(afterClickTextWithTimeout).toBeInTheDocument();
     });
   });
 });
