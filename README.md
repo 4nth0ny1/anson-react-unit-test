@@ -114,11 +114,10 @@ export const server = setupServer(...handlers);
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get("https://localhost:3000/api/users", (req, res, ctx) => {
+  rest.get("/api/users", (req, res, ctx) => {
     return res(ctx.json([{ id: 1, username: "anthony" }]));
   }),
 ];
-
 
 ```
 
@@ -146,7 +145,7 @@ afterEach(() => {
 
 ```
 
-## setup Api
+## setup Fake Api (if needed)
 
 inside app file, create folder called api and then a folder inside api called users
 then inside api/users/ create file called route.js
@@ -171,3 +170,14 @@ export async function GET(req) {
 ```
 
 now you can go to localhost:3000/api/users and see the json data
+
+## install fetch poly flow to fix fetch undefined
+
+// used to bring fetch into application for testing
+
+npm i -D whatwg-fetch
+
+### then go to jest.setup.js
+
+add import "whatwg-fetch";
+test should pass now
