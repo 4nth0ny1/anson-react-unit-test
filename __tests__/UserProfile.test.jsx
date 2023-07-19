@@ -37,4 +37,19 @@ describe("User Profile - Rendering", () => {
     );
     expect(screen.getByText(/Email not verified/i)).toBeInTheDocument();
   });
+
+  it("should only allow a display name with a max of 28 characters and will show three dots if longer than 30", () => {
+    render(
+      <UserProfile
+        displayName={"Anthonysadfsadfsadffasfsadsadfsadfsadf"}
+        username="Adev"
+        email="adev@test.com"
+        isEmailVerified={false}
+      />
+    );
+    const displayName = screen.getByTestId("displayName").textContent;
+
+    const lastValues = displayName.split("").slice(-3).join("");
+    expect(lastValues).toBe("...");
+  });
 });
