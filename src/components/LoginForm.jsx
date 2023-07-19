@@ -6,6 +6,8 @@ export const LoginForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const isDisabled = () => !username || !password;
+
   const handleLogin = (e) => {
     setError("");
     setSuccess("");
@@ -19,31 +21,39 @@ export const LoginForm = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        setSuccess("Successful Login");
+        setSuccess("Success Logging In");
       })
       .catch((err) => {
         setError("Error Logging In");
       });
   };
+
   return (
     <form>
       <div>{error}</div>
       <div>{success}</div>
-      <label htmlFor="username">UserName: </label>
+      <label htmlFor="username">Username:</label>
       <input
         type="text"
         id="username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => {
+          setUsername(e.target.value);
+        }}
       />
-      <label htmlFor="password">Password: </label>
+
+      <label htmlFor="password">Password:</label>
       <input
         type="password"
         id="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
       />
-      <button onClick={handleLogin}>login</button>
+      <button onClick={handleLogin} disabled={isDisabled()}>
+        Login
+      </button>
     </form>
   );
 };

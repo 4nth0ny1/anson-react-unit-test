@@ -9,4 +9,8 @@ export const handlers = [
       ])
     );
   }),
+
+  rest.post("/api/auth", (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
 ];
