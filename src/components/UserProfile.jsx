@@ -7,12 +7,12 @@ export default function UserProfile({
   return (
     <div>
       <div>
-        <span data-testid="displayName">
+        {/* <span data-testid="displayName">
           Display name:{" "}
           {displayName.length > 30
             ? displayName.slice(0, 28).concat("...")
             : displayName}
-        </span>
+        </span> */}
         <span>Username: {username}</span>
 
         <span>Email: {email}</span>

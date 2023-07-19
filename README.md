@@ -91,3 +91,83 @@ describe("hello", () => {
 npm test
 
 should pass without error
+
+# Mock Service Worker
+
+npm i -D msw
+
+create a mocks folder in root
+
+### create a server.js file in mocks
+
+```
+import { setupServer } from "msw/node";
+import { handlers } from "./handlers";
+
+export const server = setupServer(...handlers);
+
+```
+
+### create handlers.js in mocks
+
+```
+import { rest } from "msw";
+
+export const handlers = [
+  rest.get("https://localhost:3000/api/users", (req, res, ctx) => {
+    return res(ctx.json([{ id: 1, username: "anthony" }]));
+  }),
+];
+
+
+```
+
+### goto jest.setup.js
+
+replace code all code with
+
+```
+import "@testing-library/jest-dom/extend-expect";
+import { server } from "./mocks/server";
+
+beforeAll(() => {
+  server.listen();
+});
+
+// beforeEach(() => {});
+
+afterAll(() => {
+  server.close();
+});
+
+afterEach(() => {
+  server.resetHandlers();
+});
+
+```
+
+## setup Api
+
+inside app file, create folder called api and then a folder inside api called users
+then inside api/users/ create file called route.js
+
+route.js
+
+```
+import { NextResponse } from "next/server";
+
+export async function GET(req) {
+  return NextResponse.json([
+    { id: 1, username: "anthony" },
+    { id: 2, username: "anson" },
+    { id: 3, username: "hello" },
+  ]);
+}
+
+// export async function POST() {
+//   return;
+// }
+
+```
+
+now you can go to localhost:3000/api/users and see the json data
