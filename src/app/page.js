@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useState } from "react";
 import UserProfile from "@/components/UserProfile";
+import { UserList } from "@/components/UserList";
 
 export default function Home() {
   const [showText, setShowText] = useState(false);
@@ -34,6 +35,7 @@ export default function Home() {
       </button>
       {showText && <span>This is the text!</span>}
       <UserProfile />
+      <UserList />
     </main>
   );
 }

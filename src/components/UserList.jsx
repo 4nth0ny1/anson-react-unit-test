@@ -1,7 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const UserList = () => {
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("/api/users");
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
   }, []);
+  console.log(users);
+
+  return (
+    <div>
+      {users.length > 0 ? (
+        users.map((user) => {
+          return <div key={user.id}>{user.username}</div>;
+        })
+      ) : (
+        <span>No Users</span>
+      )}
+    </div>
+  );
 };
